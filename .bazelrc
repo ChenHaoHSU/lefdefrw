@@ -1,7 +1,1 @@
-common --noenable_bzlmod
-
-# By default, build OR-Tools in C++ 17 mode, with various extra flags per
-# platform.
-build --enable_platform_specific_config
-
 build --cxxopt="-std=c++17" --host_cxxopt="-std=c++17"
