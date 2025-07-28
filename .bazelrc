@@ -1,1 +1,11 @@
-build --cxxopt="-std=c++17" --host_cxxopt="-std=c++17"
+# Use Bzlmod (`MODULE.bazel`) instead of `WORKSPACE.bazel`.
+common --enable_bzlmod
+common --noenable_workspace
+
+# Use C++17.
+build --cxxopt=-std=c++17
+build --host_cxxopt=-std=c++17
+
+# Use gcc and g++ as the C and C++ compilers.
+build --action_env=CC=gcc
+build --action_env=CXX=g++
