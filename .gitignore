@@ -4,3 +4,6 @@ bazel-*
 
 *.lock
 MODULE.bazel.lock
+
+# Static libraries (built from source by Bazel).
+*.a

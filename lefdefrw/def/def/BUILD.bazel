@@ -2,8 +2,16 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
+# Built from source so it works on any target platform (x86-64, aarch64, ...).
+# `def.tab.cpp` / `def.tab.h` are pre-generated from `def.y` by bison, so bison
+# is not needed at build time.
 cc_library(
     name = "def",
-    srcs = [":libdef.a"],
+    srcs = glob(["*.cpp"]) + [
+        "def.tab.h",
+        "lex.h",
+    ],
     hdrs = glob(["*.hpp"]),
+    # Vendored Si2 code; silence its many legacy warnings.
+    copts = ["-w"],
 )

@@ -4,10 +4,11 @@ Please consider migrating your external dependencies from WORKSPACE to MODULE.ba
 
 For more details, please check https://github.com/bazelbuild/bazel/issues/18958
 """
+
 module(name = "lefdefrw")
 
 #############################
 # Bazel central registry.
 #############################
 # Bazel dependencies.
-bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "rules_cc", version = "0.2.28")

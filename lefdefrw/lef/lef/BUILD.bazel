@@ -2,8 +2,20 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(default_visibility = ["//visibility:public"])
 
+# Built from source so it works on any target platform (x86-64, aarch64, ...).
+# `lef.tab.cpp` / `lef.tab.h` are pre-generated from `lef.y` by bison, so bison
+# is not needed at build time.
 cc_library(
     name = "lef",
-    srcs = [":liblef.a"],
-    hdrs = glob(["*.hpp"]),
+    srcs = glob(["*.cpp"]) + [
+        "crypt.hpp",
+        "lef.tab.h",
+        "lex.h",
+    ],
+    hdrs = glob(
+        ["*.hpp"],
+        exclude = ["crypt.hpp"],
+    ),
+    # Vendored Si2 code; silence its many legacy warnings.
+    copts = ["-w"],
 )
